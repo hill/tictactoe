@@ -1,0 +1,22 @@
+main {
+  display: grid;
+  position: relative;
+  grid-template-columns: 50px 50px 50px;
+  grid-gap: 0px;
+  border: 1px solid black;
+}
+
+.winnerLabel {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  line-height: 150px;
+  font-size: 100px;
+  color: red;
+  z-index: 10;
+}
+
+app-square {
+  border: 1px gray solid;
+  height: 50px;
+}
