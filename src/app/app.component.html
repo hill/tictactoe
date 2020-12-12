@@ -12,5 +12,6 @@
     (turnMade)='handleTurn(i, $event)'
     (boardHasWinner)='handleBoardWon(i, $event)'
     [player]='player'
+    [active]='activeBoards.includes(i)'
   ></app-board>
 </main>

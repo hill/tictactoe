@@ -1,4 +1,4 @@
-<main>
+<main [ngClass]="{'is-active': active}">
   <div class='winnerLabel' *ngIf='winner'>{{winner}}</div>
   <app-square
     *ngFor='let val of squares; let i = index'

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   xIsNext: boolean;
   winner: WinState = null;
   boardWon: WinState[]
+  activeBoards: number[];
 
   // @ViewChild(BoardComponent) board:BoardComponent
   @ViewChildren(BoardComponent) boards:BoardComponent[]
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
   newGame() {
     this.xIsNext = true
     this.boardWon = Array(9).fill(null) // no board has been won
+    this.activeBoards = [0,1,2,3,4,5,6,7,8]
     // this.board.newGame()
     this.boards.forEach(board => board.newGame() )
   }
@@ -39,7 +41,11 @@ export class AppComponent implements OnInit {
 
   handleTurn(boardIdx: number, squareIdx: number) {
     console.log(`${this.player} clicked board ${boardIdx} on square ${squareIdx}`)
-    this.xIsNext = !this.xIsNext
+    this.activeBoards = [squareIdx] // set the board the next player can go to
+    if (this.boardWon[squareIdx] != null) {
+      this.activeBoards = [0,1,2,3,4,5,6,7,8]
+    }
+    this.xIsNext = !this.xIsNext // change the player
   }
 
   handleBoardWon(boardIdx: number, winner: WinState) {

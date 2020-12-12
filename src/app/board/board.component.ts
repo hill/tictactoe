@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class BoardComponent implements OnInit {
 
   @Input() player: 'X' | 'O';
-  @Input() locked: boolean;
+  @Input() active: boolean;
   @Output() turnMade = new EventEmitter();
   @Output() boardHasWinner = new EventEmitter()
   squares: any[];
@@ -20,10 +20,6 @@ export class BoardComponent implements OnInit {
     this.newGame()
   }
 
-  trackItem(index: number, item: String) {
-
-  }
-
   newGame() {
     this.squares = Array(9).fill(null)
     this.winner = null
@@ -31,7 +27,7 @@ export class BoardComponent implements OnInit {
 
   makeMove(idx: number) {
     // if there is no winner and this board is not locked
-    if (!this.winner && !this.locked) {
+    if (!this.winner && this.active) {
       // update the board state
       if (!this.squares[idx]) {
         this.squares.splice(idx, 1, this.player)
